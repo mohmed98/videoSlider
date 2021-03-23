@@ -1,0 +1,35 @@
+body {
+  margin: 0;
+}
+.videos-wrapper {
+  display: flex;
+}
+video {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  height: 100%;
+}
+
+.divider {
+  position: absolute;
+  min-width: 5px;
+  background-color: #fbfbfb;
+  z-index: 10;
+  cursor: pointer;
+  height: 100%;
+}
+
+#rightVideoWrapper {
+  width: 50%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+
+#rightVideo {
+  width: 200%;
+  height: 100%;
+  position: absolute;
+}

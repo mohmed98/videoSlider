@@ -9,40 +9,38 @@ const divider = () => {
 
   var oldPos = 0,
     newPos = 0;
-
-  divElement.onmousedown = (e) => {
-    e = e || window.event;
-    e.preventDefault();
-    // get the mouse cursor position at startup:
-    oldPos = e.clientX;
-    document.onmouseup = closeDragElement;
-    // call a function whenever the cursor moves:
-    document.onmousemove = elementDrag;
-  };
-  document.addEventListener("onmousedown", (e) => {
-    console.log(e);
-  });
-
-  // divElement.touchstart = (e) => {
-  //   console.log("bala7");
-
+  // divElement.onmousedown = (e) => {
   //   e = e || window.event;
   //   e.preventDefault();
   //   // get the mouse cursor position at startup:
   //   oldPos = e.clientX;
-  //   document.touchend = closeDragElement;
+  //   document.onmouseup = closeDragElement;
   //   // call a function whenever the cursor moves:
-  //   document.touchcancel = elementDrag;
+  //   document.onmousemove = elementDrag;
   // };
-  const elementDrag = (e) => {
+  divElement.onpointerdown = (e) => {
     e = e || window.event;
     e.preventDefault();
+    // get the mouse cursor position at startup:
+    oldPos = e.clientX;
+    document.onpointerup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onpointermove = elementDrag;
+  };
+
+  const elementDrag = (e) => {
+    e = e || window.event;
+
+    // e.preventDefault();
     newPos = oldPos - e.clientX;
     oldPos = e.clientX;
+    console.log(e.pageX);
     position = (e.pageX / window.innerWidth) * 100;
+    // console.log(e);
     if (position > 1.5 && position < 98) {
       divElement.style.left = divElement.offsetLeft - newPos + "px";
-      rightVideoWrapper.style.width = position + "%";
+
+      rightVideoWrapper.style.width = e.clientX + "px";
       rightVideo.style.width = (100 / position) * 100 + "%";
     }
   };
@@ -50,6 +48,9 @@ const divider = () => {
     /* stop moving when mouse button is released:*/
     document.onmouseup = null;
     document.onmousemove = null;
+
+    document.onpointerup = null;
+    document.onpointermove = null;
   }
 };
 window.addEventListener("load", divider);

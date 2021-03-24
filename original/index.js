@@ -11,6 +11,6 @@ function trackLocation(e) {
 var videoContainer = document.getElementById("video-compare-container"),
   videoClipper = document.getElementById("video-clipper"),
   clippedVideo = videoClipper.getElementsByTagName("video")[0];
-// videoContainer.addEventListener("mousemove", trackLocation, false);
+videoContainer.addEventListener("mousemove", trackLocation, false);
 videoContainer.addEventListener("touchstart", trackLocation, true);
 videoContainer.addEventListener("touchmove", trackLocation);
